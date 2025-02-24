@@ -21,7 +21,7 @@ export default function Home() {
       formData.append('file', file);
     }
 
-    const res = await fetch('http://localhost:3000/api/v1/settings/upload', {
+    const res = await fetch(`${process.env.BACKEND_API_HOST}/settings/upload`, {
       method: 'POST',
       body: formData,
     });
