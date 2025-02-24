@@ -21,7 +21,13 @@ export default function Home() {
       formData.append('file', file);
     }
 
-    const res = await fetch(`${process.env.BACKEND_API_HOST}/settings/upload`, {
+    const backendApiHost = process.env.NEXT_PUBLIC_BACKEND_API_HOST;
+    if (!backendApiHost) {
+      console.error('Environment variable NEXT_PUBLIC_BACKEND_API_HOST is not defined');
+      return;
+    }
+
+    const res = await fetch(`${backendApiHost}/settings/upload`, {
       method: 'POST',
       body: formData,
     });
